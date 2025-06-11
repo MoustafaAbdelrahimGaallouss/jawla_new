@@ -25,6 +25,9 @@ class DiscoverSearch extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
+              onChanged: (value) {
+                controller.searchFun();
+              },
               controller: controller.search,
               cursorColor: AppColor.secondColor,
               style: const TextStyle(fontSize: 16, color: AppColor.secondColor),

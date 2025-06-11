@@ -17,3 +17,4 @@ final class ApiFailure extends AppState {
 final class InternetError extends AppState {}
 
 final class ServerError extends AppState {}
+class SearchUpdated extends AppState {}

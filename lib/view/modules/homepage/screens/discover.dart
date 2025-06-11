@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jawla/core/constants/colors.dart';
-import 'package:jawla/data/static%20data/static_data.dart';
+import 'package:jawla/view%20model/app_state.dart';
 import 'package:jawla/view%20model/homepage/discover_cubit.dart';
 import 'package:jawla/view/modules/homepage/widgets/discover_destination_widget.dart';
-import 'package:sizer/sizer.dart';
+import 'package:jawla/view/modules/homepage/widgets/discover_search.dart';
 
 class Discover extends StatelessWidget {
   const Discover({super.key});
@@ -14,37 +14,30 @@ class Discover extends StatelessWidget {
       create: (context) => DiscoverCubit(),
       child: Builder(
         builder: (context) {
-        //  var controller = context.read<DiscoverCubit>();
+          var controller = context.read<DiscoverCubit>();
           return SafeArea(
             child: Scaffold(
               backgroundColor: AppColor.secondColor,
-              body: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 2.h),
-                      // Search Bar
-                      // DiscoverSearch(controller: controller),
-                      // SizedBox(height: 1.h),
-                      // Location Card
-                      SizedBox(
-                        width: 100.w,
-                        height: 90.h,
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DiscoverSearch(controller: controller),
+                  BlocBuilder<DiscoverCubit, AppState>(
+                    builder: (context, state) {
+                      return Expanded(
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
-                          itemCount: StaticData().staticData.length,
+                          itemCount: controller.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             return DiscoverDestinationWidget(
-                              destination: StaticData().staticData[index],
+                              destination: controller.data[index],
                             );
                           },
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                ),
+                ],
               ),
             ),
           );

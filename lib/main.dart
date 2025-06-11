@@ -10,7 +10,6 @@ import 'package:jawla/view%20model/homepage/favorite_cubit.dart';
 import 'package:jawla/view/modules/homepage/screens/bottom_nav.dart';
 import 'package:jawla/view/modules/onboarding/screens/onboarding1.dart';
 import 'package:sizer/sizer.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final services = Get.put(Services());
